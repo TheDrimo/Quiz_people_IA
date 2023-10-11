@@ -1,0 +1,18 @@
+{
+  "apiUrl": "https://api.openai.com/v1/chat/completions",
+  "apiKey": "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",
+  "type": "module",
+  "name": "quiz_people_ia",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "openai": "^4.11.1"
+  }
+}
