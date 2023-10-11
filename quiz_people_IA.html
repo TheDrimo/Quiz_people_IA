@@ -3,28 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Where is the Waldo ?</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Minimalistic Quiz</title>
 </head>
 <body>
-    <header>
-        <h1><div id="responseMessage"></div></h1>
-    </header>
-    <div class="bloc olive" id="oliveBlock">
-        <div class="subbanner">
-            <div class="subbanner"><div id="subbannerMessageleft"></div></div>
+    <h1>Can you tell the nationality of an AI-generated face?</h1>
+    <div class="quiz-container">
+        <h2 id="question">Question Text</h2>
+        <div class="answers">
+            <div class="answer" onclick="checkAnswer(0)" style="background-color: #FF5733;"></div>
+            <div class="answer" onclick="checkAnswer(1)" style="background-color: #33FF57;"></div>
         </div>
-        <div class="content">
-            <img id="responseImage1" src="" alt="Image Response">
-        </div>
-    </div>
-    <div class="bloc salmon">
-        <div class="subbanner">
-            <div class="subbanner"><div id="subbannerMessageright"></div></div>
-        </div>
-        <div class="content">
-            <img id="responseImage2" src="" alt="Image Response">
-        </div>
+        <button id="next-button" onclick="nextQuestion()">Next</button>
     </div>
     <script src="script.js"></script>
 </body>

@@ -7,9 +7,12 @@ import openai
 import random
 import datetime
 import sqlite3
+from dotenv import load_dotenv
 
 
-openai.api_key = "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"
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 
 def generate_IA_image(description):
   try:
@@ -43,7 +46,7 @@ def random_country_sex(country_list):
     if selected_sex == "man":
       description = "a young and handsome "
     else :
-      description = "a young and beautiful "
+      description = "a young and sbeautiful "
     description += f"{selected_country} {selected_sex}"
     return [selected_country, selected_sex, description]
 
