@@ -21,9 +21,8 @@ conn.commit()
 conn.close()
 
 
-@app.route("/api", methods=["POST"])
+@app.route("/api", methods=["GET"])
 def handle_request():
-    global request_count
     conn = sqlite3.connect("bd_ia_generated_images.db")
     cursor = conn.cursor()
     choice = fetch_random_entry(cursor)
@@ -31,19 +30,26 @@ def handle_request():
     image_string2 = choice[1][1]
     country1 = choice[0][3]
     country2 = choice[1][3]
-    selected = choice[random.choice([0,1])][3]
-    message = f"Where is the {selected} ?"
     conn.close()
-    try:
-        data = request.get_json()
-        if data["message"] == "are you ok ?":
-            return jsonify({"message": message, "image_string1": image_string1, 
-                "image_string2": image_string2, "country1":country1, "country2":country2})
-        else:
-            return jsonify({"message": "Invalid request"})
-    except Exception as e:
-        print("Error:", e)
-        return jsonify({"message": "An error occurred on the server"}), 500
+    
+    return jsonify({
+        "image1": image_string1,
+        "image2": image_string2, 
+        "country1": country1,
+        "country2": country2
+    })
+
+@app.route("/api/response", methods=["POST"])
+def handle_response():
+    data = request.get_json()
+    selectedAnswer = data.get("selectedAnswer")
+    correctAnswer = data.get("correctAnswer")
+    wrongAnswer = data.get("wrongAnswer")
+
+    # Do something with the received data...
+    
+    return jsonify({"message": "Data received successfully"})
+
 
 
 if __name__ == "__main__":
