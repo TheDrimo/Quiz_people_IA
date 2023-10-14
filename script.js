@@ -1,11 +1,18 @@
+//const SERVER_URL = "http://127.0.0.1:5000";
+//const SERVER_URL = "http://87.106.121.103:5000";
+const SERVER_URL = "http://192.168.1.52:5000";
+
 // Fetch data from the server
 async function fetchData() {
+    console.log("appel server")
     try {
-        let response = await fetch("http://127.0.0.1:5000/api");
+        let response = await fetch(`${SERVER_URL}/api`);
         let data = await response.json();
         return data;
+        console.log("get response")
     } catch (error) {
         console.error("Error fetching data:", error);
+        console.log("no response")
     }
 }
 
@@ -13,7 +20,6 @@ async function fetchData() {
 let currentData = null;
 let correctAnswerIndex = null;
 let imageClicked = false;
-
 
 // Display the question and answers on the page
 async function displayQuestion() {
@@ -83,7 +89,7 @@ function checkAnswer(index) {
 }
 
 function sendDataToServer(selected, correct, wrong) {
-    fetch("http://127.0.0.1:5000/api/response", {
+    fetch(`${SERVER_URL}/api/response`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -103,14 +109,11 @@ function sendDataToServer(selected, correct, wrong) {
     });
 }
 
-
 // Move to the next question
 function nextQuestion() {
     displayQuestion();
     imageClicked = false;
 }
-
-
 
 // Display the first question when the page loads
 displayQuestion();

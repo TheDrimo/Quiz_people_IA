@@ -1,6 +1,5 @@
 {
   "apiUrl": "https://api.openai.com/v1/chat/completions",
-  "apiKey": "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",
   "type": "module",
   "name": "quiz_people_ia",
   "version": "1.0.0",
@@ -13,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "openai": "^4.11.1"
   }
 }

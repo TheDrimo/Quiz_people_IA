@@ -6,8 +6,10 @@ import os
 import openai
 import random
 from quiz_people_server_algo import *
+from dotenv import load_dotenv
 
-openai.api_key = "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"
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 app = Flask(__name__)
@@ -16,7 +18,8 @@ CORS(app)
 
 conn = sqlite3.connect("bd_ia_generated_images.db")
 cursor = conn.cursor()
-generate_bd(cursor)
+setup_answer_table(cursor)
+#generate_bd(cursor)
 conn.commit()
 conn.close()
 
@@ -46,11 +49,18 @@ def handle_response():
     correctAnswer = data.get("correctAnswer")
     wrongAnswer = data.get("wrongAnswer")
 
-    # Do something with the received data...
+    ip_address = request.remote_addr
+
+    conn = sqlite3.connect("bd_ia_generated_images.db")
+    cursor = conn.cursor()
+    register_answer(cursor, selectedAnswer, correctAnswer, wrongAnswer, ip_address)
+    conn.commit()
+    conn.close()
+
     
     return jsonify({"message": "Data received successfully"})
 
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0')
