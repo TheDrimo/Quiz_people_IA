@@ -1,6 +1,6 @@
 //const SERVER_URL = "http://127.0.0.1:5000";
-//const SERVER_URL = "http://87.106.121.103:5000";
-const SERVER_URL = "http://192.168.1.52:5000";
+const SERVER_URL = "http://87.106.121.103:5000";
+//const SERVER_URL = "http://192.168.1.52:5000";
 
 // Fetch data from the server
 async function fetchData() {
